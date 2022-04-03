@@ -5,26 +5,30 @@ import logics.MessengerBot;
 import java.util.Scanner;
 
 public class Main {
-    static Bot bot;
     public static void main(String[] args) {
-        String choice = chooseBot();
-        if(choice.equals("1")){
-            bot = new MessengerBot();
-        }else if(choice.equals("2")){
-            bot = new InstagramBot();
+        Bot bot = chooseBot();
+        bot.login();
+        try {
+            bot.loop();
+        }catch (InterruptedException e){
+            System.out.println("You interrupted the program!");
         }
     }
 
-    private static String chooseBot() {
+    private static Bot chooseBot() {
         System.out.println("Which Bot do you want to use?");
         System.out.println("1 - Messenger");
         System.out.println("2 - Instagram");
         Scanner scanner = new Scanner(System.in);
         String choice = scanner.nextLine();
-        while(!scanner.nextLine().equals("1") && !scanner.nextLine().equals("2")) {
+        while(!choice.equals("1") && !choice.equals("2")) {
             System.out.println("Incorrect input!");
             choice = scanner.nextLine();
         }
-        return choice;
+        if(choice.equals("1")){
+            return new MessengerBot();
+        }else {
+            return new InstagramBot();
+        }
     }
 }
