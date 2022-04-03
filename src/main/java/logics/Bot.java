@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,10 +31,10 @@ public abstract class Bot {
 
     public abstract void login();
 
-    public void loop() throws InterruptedException {
+    public void loop() throws InterruptedException, FileNotFoundException {
         goToMessages();
         while(true){
-            if(lastMessageInNameList()){
+            if(lastMessageIsInNameList()){
                 String message = getMessage();
                 String answer = getAnswerFromBotByMessage(message);
                 sendAnswer(answer);
@@ -45,6 +46,6 @@ public abstract class Bot {
     abstract void sendAnswer(String answer);
     abstract String getAnswerFromBotByMessage(String message);
     abstract String getMessage();
-    abstract boolean lastMessageInNameList();
+    abstract boolean lastMessageIsInNameList() throws FileNotFoundException;
     abstract void goToMessages();
 }
