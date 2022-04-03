@@ -9,7 +9,6 @@ import util.URLCollector;
 public class FacebookLoginPage extends BasePage {
     public FacebookLoginPage(WebDriver driver) {
         super(driver);
-        driver.get(URLCollector.FACEBOOK_LOGIN_PAGE_URL.URL);
     }
 
     @FindBy(xpath = "//input[@id='email']")
@@ -25,6 +24,7 @@ public class FacebookLoginPage extends BasePage {
     WebElement acceptCookiesButton;
 
     public void actLogin(String email, String password) {
+        driver.get(URLCollector.FACEBOOK_LOGIN_PAGE_URL.URL);
         WebElementWait.waitUntilClickable(driver, acceptCookiesButton);
         acceptCookiesButton.click();
         WebElementWait.waitUntilVisible(driver, emailInputField);

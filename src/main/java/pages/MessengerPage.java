@@ -8,7 +8,6 @@ import util.URLCollector;
 public class MessengerPage extends BasePage {
     public MessengerPage(WebDriver driver) {
         super(driver);
-        driver.get(URLCollector.MESSENGER_PAGE_URL.URL);
     }
 
     @FindBy(xpath = "//h1[contains(text(),'Chatek')]")

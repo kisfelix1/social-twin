@@ -1,11 +1,15 @@
 package logics;
 
 import pages.FacebookLoginPage;
+import pages.MessengerPage;
 
-public class MessengerBot extends Bot{
+public class MessengerBot extends Bot {
     FacebookLoginPage fBLoginPage;
+    MessengerPage messengerPage;
+
     public MessengerBot() {
         fBLoginPage = new FacebookLoginPage(driver);
+        messengerPage = new MessengerPage(driver);
     }
 
     @Override
