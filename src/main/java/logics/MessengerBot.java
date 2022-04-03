@@ -2,7 +2,11 @@ package logics;
 
 import pages.FacebookLoginPage;
 import pages.MessengerPage;
+import util.txtFileReader;
 import util.URLCollector;
+
+import java.io.FileNotFoundException;
+import java.util.List;
 
 public class MessengerBot extends Bot {
     FacebookLoginPage fBLoginPage;
@@ -36,7 +40,8 @@ public class MessengerBot extends Bot {
     }
 
     @Override
-    boolean lastMessageInNameList() {
+    boolean lastMessageIsInNameList() throws FileNotFoundException {
+        List<String> names = txtFileReader.getNamesOfTxt();
         return false;
     }
 
