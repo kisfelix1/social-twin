@@ -3,12 +3,14 @@ package logics;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import pages.CleverBotPage;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Bot {
+    protected static final CleverBotPage cleverBotPage = new CleverBotPage(new ChromeDriver());
     protected static WebDriver driver;
 
     public Bot() {
@@ -33,8 +35,8 @@ public abstract class Bot {
 
     public void loop() throws InterruptedException, FileNotFoundException {
         goToMessages();
-        while(true){
-            if(lastMessageIsInNameList()){
+        while (true) {
+            if (lastMessageIsInNameList()) {
                 String message = getMessage();
                 String answer = getAnswerFromBotByMessage(message);
                 sendAnswer(answer);
@@ -44,8 +46,12 @@ public abstract class Bot {
     }
 
     abstract void sendAnswer(String answer);
+
     abstract String getAnswerFromBotByMessage(String message);
+
     abstract String getMessage();
+
     abstract boolean lastMessageIsInNameList() throws FileNotFoundException;
+
     abstract void goToMessages();
 }
