@@ -25,7 +25,7 @@ public class InstagramBot extends Bot {
     }
 
     @Override
-    boolean lastMessageInNameList() {
+    boolean lastMessageIsInNameList() {
         return false;
     }
 
