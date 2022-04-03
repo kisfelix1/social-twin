@@ -4,11 +4,18 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import util.URLCollector;
 import util.WebElementWait;
 
 public class CleverBotPage extends BasePage {
     public CleverBotPage(WebDriver driver) {
         super(driver);
+        setUp();
+    }
+
+    private void setUp() {
+        driver.get(URLCollector.CLEVERBOT_PAGE_URL.URL);
+        clickAgreeButton();
     }
 
     @FindBy(xpath = "//input[@value='understood, and agreed']")
@@ -20,7 +27,7 @@ public class CleverBotPage extends BasePage {
     @FindBy(xpath = "//input[@name='stimulus']")
     WebElement stimulusInputField;
 
-    public void clickAgreeButton() {
+    private void clickAgreeButton() {
         WebElementWait.waitUntilClickable(driver, agreeButton);
         agreeButton.click();
     }
@@ -32,6 +39,7 @@ public class CleverBotPage extends BasePage {
     }
 
     public String getLastAnswerFromConversation() {
+        WebElementWait.waitUntilVisible(driver, lastMessage);
         return lastMessage.getText();
     }
 }
