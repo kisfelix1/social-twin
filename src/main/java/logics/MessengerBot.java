@@ -2,6 +2,7 @@ package logics;
 
 import pages.FacebookLoginPage;
 import pages.MessengerPage;
+import util.URLCollector;
 
 public class MessengerBot extends Bot {
     FacebookLoginPage fBLoginPage;
@@ -41,6 +42,6 @@ public class MessengerBot extends Bot {
 
     @Override
     void goToMessages() {
-
+        driver.get(URLCollector.MESSENGER_PAGE_URL.URL);
     }
 }
