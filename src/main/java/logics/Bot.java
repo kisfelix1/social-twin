@@ -38,7 +38,8 @@ public abstract class Bot {
         while (true) {
             if (lastMessageIsInNameList()) {
                 String message = getMessage();
-                String answer = getAnswerFromBotByMessage(message);
+                cleverBotPage.sendText(message);
+                String answer = getLastAnswerFromBot();
                 sendAnswer(answer);
             }
             Thread.sleep(5000);
@@ -47,7 +48,7 @@ public abstract class Bot {
 
     abstract void sendAnswer(String answer);
 
-    abstract String getAnswerFromBotByMessage(String message);
+    abstract String getLastAnswerFromBot();
 
     abstract String getMessage();
 
