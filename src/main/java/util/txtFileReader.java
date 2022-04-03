@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class FileReader {
-    private static final String fileName = "names.txt";
+public class txtFileReader {
+    private static final String fileName = "src/main/resources/names.txt";
 
     public static List<String> getNamesOfTxt() throws FileNotFoundException {
         File file = new File(fileName);
