@@ -3,8 +3,8 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import util.WebElementWait;
 import util.URLCollector;
+import util.WebElementWait;
 
 public class FacebookLoginPage extends BasePage {
     public FacebookLoginPage(WebDriver driver) {

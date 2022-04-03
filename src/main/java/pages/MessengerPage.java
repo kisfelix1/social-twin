@@ -3,7 +3,6 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import util.URLCollector;
 
 public class MessengerPage extends BasePage {
     public MessengerPage(WebDriver driver) {
@@ -16,7 +15,7 @@ public class MessengerPage extends BasePage {
     @FindBy(xpath = "//span[@data-testid='timestamp']")
     WebElement timeStamp;
 
-    public boolean checkTimeStamp(){
+    public boolean checkTimeStamp() {
         String timeStampOfLastMessage = timeStamp.getText().split(" ")[0];
         String timeMeasure = timeStamp.getText().split(" ")[1];
         return Integer.parseInt(timeStampOfLastMessage) < 1 && timeMeasure.equals("p");

@@ -2,8 +2,8 @@ package logics;
 
 import pages.FacebookLoginPage;
 import pages.MessengerPage;
-import util.txtFileReader;
 import util.URLCollector;
+import util.txtFileReader;
 
 import java.io.FileNotFoundException;
 import java.util.List;
