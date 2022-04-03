@@ -30,8 +30,8 @@ public class MessengerBot extends Bot {
     }
 
     @Override
-    String getAnswerFromBotByMessage(String message) {
-        return null;
+    String getLastAnswerFromBot() {
+        return cleverBotPage.getLastAnswerFromConversation();
     }
 
     @Override

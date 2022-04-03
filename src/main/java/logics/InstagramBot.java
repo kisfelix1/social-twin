@@ -15,7 +15,7 @@ public class InstagramBot extends Bot {
     }
 
     @Override
-    String getAnswerFromBotByMessage(String message) {
+    String getLastAnswerFromBot() {
         return null;
     }
 
