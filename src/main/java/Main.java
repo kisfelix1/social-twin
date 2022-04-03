@@ -2,6 +2,7 @@ import logics.Bot;
 import logics.InstagramBot;
 import logics.MessengerBot;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
@@ -12,6 +13,8 @@ public class Main {
             bot.loop();
         }catch (InterruptedException e){
             System.out.println("You interrupted the program!");
+        } catch (FileNotFoundException e) {
+            System.out.println("There is no file on the given path!");
         }
     }
 
