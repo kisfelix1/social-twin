@@ -27,10 +27,14 @@ public class MessengerPage extends BasePage {
     WebElement messageInputField;
 
 
-    public boolean checkTimeStamp() {
-        String timeStampOfLastMessage = timeStamp.getText().split(" ")[0];
-        String timeMeasure = timeStamp.getText().split(" ")[1];
-        return Integer.parseInt(timeStampOfLastMessage) < 1 && timeMeasure.equals("p");
+    public boolean isTimeStampInCriteria(int timeValueCriteria, String timeMeasureCriteria) {
+        String timeValue = getTimeStampMeasureOnIndex(0);
+        String timeMeasure = getTimeStampMeasureOnIndex(1);
+        return Integer.parseInt(timeValue) < timeValueCriteria && timeMeasure.equals(timeMeasureCriteria);
+    }
+
+    private String getTimeStampMeasureOnIndex(int x) {
+        return timeStamp.getText().split(" ")[x];
     }
 
     public void sendAnswer(String answer) {
