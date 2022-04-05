@@ -46,7 +46,7 @@ public class MessengerBot extends Bot {
     @Override
     boolean lastMessageIsInNameList() throws FileNotFoundException {
         List<String> names = txtFileReader.getNamesOfTxt();
-        System.out.println(messengerPage.getLastMessageName().split(" ")[0] + " " + messengerPage.getLastMessageName().split(" ")[1]);
-        return names.contains(messengerPage.getLastMessageName().split(" ")[0] + " " + messengerPage.getLastMessageName().split(" ")[1]) && messengerPage.notSentByUser();
+        System.out.println(messengerPage.getLastMessageSenderName().split(" ")[0] + " " + messengerPage.getLastMessageSenderName().split(" ")[1]);
+        return names.contains(messengerPage.getLastMessageSenderName().split(" ")[0] + " " + messengerPage.getLastMessageSenderName().split(" ")[1]) && messengerPage.notSentByUser();
     }
 }

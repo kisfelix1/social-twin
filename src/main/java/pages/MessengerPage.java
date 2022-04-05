@@ -49,7 +49,7 @@ public class MessengerPage extends BasePage {
         return lastMessage.getText();
     }
 
-    public String getLastMessageName() {
+    public String getLastMessageSenderName() {
         WebElementWait.waitUntilVisible(driver, firstChatOnPage);
         return firstChatOnPage.getText();
     }
