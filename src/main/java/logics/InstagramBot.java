@@ -10,6 +10,11 @@ public class InstagramBot extends Bot {
     }
 
     @Override
+    boolean notSentByUser() {
+        return false;
+    }
+
+    @Override
     void sendAnswer(String answer) {
 
     }
@@ -27,10 +32,5 @@ public class InstagramBot extends Bot {
     @Override
     boolean lastMessageIsInNameList() {
         return false;
-    }
-
-    @Override
-    void goToMessages() {
-
     }
 }
