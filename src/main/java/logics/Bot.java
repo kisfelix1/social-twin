@@ -24,7 +24,7 @@ public abstract class Bot {
 
     public void loop() throws InterruptedException, FileNotFoundException {
         while(true) {
-            if (lastMessageIsInNameList() && notSentByUser()) {
+            if (messageReceived()) {
                 String message = getLastMessageFromPartner();
                 sendMessageToAI(message);
                 String answer = getLastAnswerFromAI();
@@ -32,6 +32,10 @@ public abstract class Bot {
             }
             Thread.sleep(10000);
         }
+    }
+
+    private boolean messageReceived() throws FileNotFoundException {
+        return lastMessageIsInNameList() && notSentByUser();
     }
 
     private void sendMessageToAI(String message){
