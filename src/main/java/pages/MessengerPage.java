@@ -4,11 +4,14 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import util.WebElementWait;
 
 public class MessengerPage extends BasePage {
+
     public MessengerPage(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     @FindBy(xpath = "//span[@data-testid='timestamp']")
@@ -31,11 +34,25 @@ public class MessengerPage extends BasePage {
     }
 
     public void sendAnswer(String answer) {
+        WebElementWait.waitUntilClickable(driver, firstChatOnPage);
         firstChatOnPage.click();
         WebElementWait.waitUntilVisible(driver, messageInputField);
         messageInputField.sendKeys(answer);
         messageInputField.sendKeys(Keys.ENTER);
     }
 
+    public String getLastMessage() {
+        return lastMessage.getText();
+    }
 
+    public String getLastMessageName() {
+        WebElementWait.waitUntilVisible(driver, firstChatOnPage);
+        return firstChatOnPage.getText();
+    }
+
+    public boolean notSentByUser() {
+        WebElementWait.waitUntilVisible(driver, firstChatOnPage);
+        System.out.println(firstChatOnPage.getText());
+        return true;
+    }
 }
