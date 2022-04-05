@@ -2,13 +2,25 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import util.URLCollector;
 import util.WebElementWait;
 
-public class FacebookLoginPage extends BasePage {
-    public FacebookLoginPage(WebDriver driver) {
-        super(driver);
+import java.util.HashMap;
+import java.util.Map;
+
+public class MessengerLoginPage extends BasePage {
+    public MessengerLoginPage() {
+        Map<String, Object> prefs = new HashMap<String, Object>();
+        prefs.put("profile.default_content_setting_values.notifications", 2);
+        ChromeOptions options = new ChromeOptions();
+        options.setExperimentalOption("prefs", prefs);
+        driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+        PageFactory.initElements(driver, this);
     }
 
     @FindBy(xpath = "//input[@id='email']")
@@ -24,7 +36,7 @@ public class FacebookLoginPage extends BasePage {
     WebElement acceptCookiesButton;
 
     public void actLogin(String email, String password) {
-        driver.get(URLCollector.FACEBOOK_LOGIN_PAGE_URL.URL);
+        driver.get(URLCollector.MESSENGER_LOGIN_PAGE_URL.URL);
         WebElementWait.waitUntilClickable(driver, acceptCookiesButton);
         acceptCookiesButton.click();
         WebElementWait.waitUntilVisible(driver, emailInputField);
@@ -33,6 +45,10 @@ public class FacebookLoginPage extends BasePage {
         passwordInputField.sendKeys(password);
         WebElementWait.waitUntilClickable(driver, loginButton);
         loginButton.click();
+    }
+
+    public void giveWebDriverToPage(BasePage page){
+        page.setDriver(driver);
     }
 
 }
