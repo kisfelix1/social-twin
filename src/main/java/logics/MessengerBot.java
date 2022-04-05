@@ -29,13 +29,13 @@ public class MessengerBot extends Bot {
     }
 
     @Override
-    void sendAnswerToPartner(String answer) {
+    void sendAnswerToPartner(String answer) throws InterruptedException {
         messengerPage.sendAnswer(answer);
     }
 
     @Override
-    String getLastAnswerFromAI() {
-        return cleverBotPage.getLastAnswerFromConversation();
+    String getLastAnswerFromAI() throws InterruptedException {
+        return cleverBotPage.getLastAnswerFromAIConversation();
     }
 
     @Override
@@ -46,7 +46,6 @@ public class MessengerBot extends Bot {
     @Override
     boolean lastMessageIsInNameList() throws FileNotFoundException {
         List<String> names = txtFileReader.getNamesOfTxt();
-        System.out.println(messengerPage.getLastMessageSenderName().split(" ")[0] + " " + messengerPage.getLastMessageSenderName().split(" ")[1]);
         return names.contains(messengerPage.getLastMessageSenderName().split(" ")[0] + " " + messengerPage.getLastMessageSenderName().split(" ")[1]) && messengerPage.notSentByUser();
     }
 }

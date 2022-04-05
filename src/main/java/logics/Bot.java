@@ -44,9 +44,9 @@ public abstract class Bot {
 
     abstract boolean notSentByUser();
 
-    abstract void sendAnswerToPartner(String answer);
+    abstract void sendAnswerToPartner(String answer) throws InterruptedException;
 
-    abstract String getLastAnswerFromAI();
+    abstract String getLastAnswerFromAI() throws InterruptedException;
 
     abstract String getLastMessageFromPartner();
 

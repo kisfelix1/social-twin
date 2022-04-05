@@ -1,11 +1,13 @@
 package pages;
 
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import util.WebElementWait;
+
+import java.awt.Toolkit;
+import java.awt.Dimension;
+
 
 public class MessengerPage extends BasePage {
 
@@ -37,10 +39,11 @@ public class MessengerPage extends BasePage {
         return timeStamp.getText().split(" ")[x];
     }
 
-    public void sendAnswer(String answer) {
+    public void sendAnswer(String answer) throws InterruptedException {
         WebElementWait.waitUntilClickable(driver, firstChatOnPage);
         firstChatOnPage.click();
         WebElementWait.waitUntilVisible(driver, messageInputField);
+        Thread.sleep(2000);
         messageInputField.sendKeys(answer);
         messageInputField.sendKeys(Keys.ENTER);
     }
@@ -51,12 +54,11 @@ public class MessengerPage extends BasePage {
 
     public String getLastMessageSenderName() {
         WebElementWait.waitUntilVisible(driver, firstChatOnPage);
-        return firstChatOnPage.getText();
+        return firstChatOnPage.getText().split("\n")[0];
     }
 
     public boolean notSentByUser() {
         WebElementWait.waitUntilVisible(driver, firstChatOnPage);
-        System.out.println(firstChatOnPage.getText());
         return true;
     }
 }
