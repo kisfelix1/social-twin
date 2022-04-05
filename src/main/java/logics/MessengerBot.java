@@ -1,32 +1,36 @@
 package logics;
 
-import pages.FacebookLoginPage;
+import pages.MessengerLoginPage;
 import pages.MessengerPage;
-import util.URLCollector;
 import util.txtFileReader;
 
 import java.io.FileNotFoundException;
 import java.util.List;
 
 public class MessengerBot extends Bot {
-    FacebookLoginPage fBLoginPage;
+    MessengerLoginPage messengerLoginPage;
     MessengerPage messengerPage;
 
     public MessengerBot() {
-        fBLoginPage = new FacebookLoginPage(driver);
-        messengerPage = new MessengerPage(driver);
+        messengerLoginPage = new MessengerLoginPage();
     }
 
     @Override
     public void login() {
         String email = System.getenv("email");
         String password = System.getenv("password");
-        fBLoginPage.actLogin(email, password);
+        messengerLoginPage.actLogin(email, password);
+        messengerPage = new MessengerPage(messengerLoginPage.getDriver());
+    }
+
+    @Override
+    boolean notSentByUser() {
+        return messengerPage.notSentByUser();
     }
 
     @Override
     void sendAnswer(String answer) {
-
+        messengerPage.sendAnswer(answer);
     }
 
     @Override
@@ -36,17 +40,13 @@ public class MessengerBot extends Bot {
 
     @Override
     String getMessage() {
-        return null;
+        return messengerPage.getLastMessage();
     }
 
     @Override
     boolean lastMessageIsInNameList() throws FileNotFoundException {
         List<String> names = txtFileReader.getNamesOfTxt();
-        return false;
-    }
-
-    @Override
-    void goToMessages() {
-        driver.get(URLCollector.MESSENGER_PAGE_URL.URL);
+        System.out.println(messengerPage.getLastMessageName().split(" ")[0] + " " +messengerPage.getLastMessageName().split(" ")[1]);
+        return names.contains(messengerPage.getLastMessageName().split(" ")[0] + " " +messengerPage.getLastMessageName().split(" ")[1]) && messengerPage.notSentByUser();
     }
 }
