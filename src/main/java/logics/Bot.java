@@ -1,26 +1,15 @@
 package logics;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import pages.CleverBotPage;
 
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
 
 public abstract class Bot {
-    protected static final CleverBotPage cleverBotPage = new CleverBotPage(new ChromeDriver());
-    protected static WebDriver driver;
+    protected static CleverBotPage cleverBotPage;
 
     public Bot() {
-        Map<String, Object> prefs = new HashMap<String, Object>();
-        prefs.put("profile.default_content_setting_values.notifications", 2);
-        ChromeOptions options = new ChromeOptions();
-        options.setExperimentalOption("prefs", prefs);
         setUpChromeDriverPath();
-        driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
+        cleverBotPage = new CleverBotPage();
     }
 
     private void setUpChromeDriverPath() {
@@ -34,17 +23,18 @@ public abstract class Bot {
     public abstract void login();
 
     public void loop() throws InterruptedException, FileNotFoundException {
-        goToMessages();
-        while (true) {
-            if (lastMessageIsInNameList()) {
+        while(true) {
+            if (lastMessageIsInNameList() && notSentByUser()) {
                 String message = getMessage();
                 cleverBotPage.sendText(message);
                 String answer = getLastAnswerFromBot();
                 sendAnswer(answer);
             }
-            Thread.sleep(5000);
+            Thread.sleep(10000);
         }
     }
+
+    abstract boolean notSentByUser();
 
     abstract void sendAnswer(String answer);
 
@@ -53,6 +43,4 @@ public abstract class Bot {
     abstract String getMessage();
 
     abstract boolean lastMessageIsInNameList() throws FileNotFoundException;
-
-    abstract void goToMessages();
 }
