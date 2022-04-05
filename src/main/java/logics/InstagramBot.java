@@ -15,17 +15,17 @@ public class InstagramBot extends Bot {
     }
 
     @Override
-    void sendAnswer(String answer) {
+    void sendAnswerToPartner(String answer) {
 
     }
 
     @Override
-    String getLastAnswerFromBot() {
+    String getLastAnswerFromAI() {
         return null;
     }
 
     @Override
-    String getMessage() {
+    String getLastMessageFromPartner() {
         return null;
     }
 

@@ -25,22 +25,26 @@ public abstract class Bot {
     public void loop() throws InterruptedException, FileNotFoundException {
         while(true) {
             if (lastMessageIsInNameList() && notSentByUser()) {
-                String message = getMessage();
-                cleverBotPage.sendText(message);
-                String answer = getLastAnswerFromBot();
-                sendAnswer(answer);
+                String message = getLastMessageFromPartner();
+                sendMessageToAI(message);
+                String answer = getLastAnswerFromAI();
+                sendAnswerToPartner(answer);
             }
             Thread.sleep(10000);
         }
     }
 
+    private void sendMessageToAI(String message){
+        cleverBotPage.sendText(message);
+    }
+
     abstract boolean notSentByUser();
 
-    abstract void sendAnswer(String answer);
+    abstract void sendAnswerToPartner(String answer);
 
-    abstract String getLastAnswerFromBot();
+    abstract String getLastAnswerFromAI();
 
-    abstract String getMessage();
+    abstract String getLastMessageFromPartner();
 
     abstract boolean lastMessageIsInNameList() throws FileNotFoundException;
 }

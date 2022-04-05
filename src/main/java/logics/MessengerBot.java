@@ -29,24 +29,24 @@ public class MessengerBot extends Bot {
     }
 
     @Override
-    void sendAnswer(String answer) {
+    void sendAnswerToPartner(String answer) {
         messengerPage.sendAnswer(answer);
     }
 
     @Override
-    String getLastAnswerFromBot() {
+    String getLastAnswerFromAI() {
         return cleverBotPage.getLastAnswerFromConversation();
     }
 
     @Override
-    String getMessage() {
+    String getLastMessageFromPartner() {
         return messengerPage.getLastMessage();
     }
 
     @Override
     boolean lastMessageIsInNameList() throws FileNotFoundException {
         List<String> names = txtFileReader.getNamesOfTxt();
-        System.out.println(messengerPage.getLastMessageName().split(" ")[0] + " " +messengerPage.getLastMessageName().split(" ")[1]);
-        return names.contains(messengerPage.getLastMessageName().split(" ")[0] + " " +messengerPage.getLastMessageName().split(" ")[1]) && messengerPage.notSentByUser();
+        System.out.println(messengerPage.getLastMessageName().split(" ")[0] + " " + messengerPage.getLastMessageName().split(" ")[1]);
+        return names.contains(messengerPage.getLastMessageName().split(" ")[0] + " " + messengerPage.getLastMessageName().split(" ")[1]) && messengerPage.notSentByUser();
     }
 }
