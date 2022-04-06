@@ -28,6 +28,9 @@ public class MessengerPage extends BasePage {
     @FindBy(xpath = "//div[@role='textbox']")
     WebElement messageInputField;
 
+    @FindBy(xpath = "(//div[@style='background-color: rgb(0, 132, 255);'])[last()]")
+    WebElement lastMessageByUser;
+
 
     public boolean isTimeStampInCriteria(int timeValueCriteria, String timeMeasureCriteria) {
         String timeValue = getTimeStampMeasureOnIndex(0);
@@ -58,7 +61,6 @@ public class MessengerPage extends BasePage {
     }
 
     public boolean notSentByUser() {
-        WebElementWait.waitUntilVisible(driver, firstChatOnPage);
-        return true;
+        return !lastMessageByUser.getText().equals(lastMessage.getText());
     }
 }
