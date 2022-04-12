@@ -21,6 +21,7 @@ public class MessengerBot extends Bot {
         String password = System.getenv("password");
         messengerLoginPage.actLogin(email, password);
         messengerPage = new MessengerPage(messengerLoginPage.getDriver());
+        messengerPage.clickAccept();
     }
 
     @Override

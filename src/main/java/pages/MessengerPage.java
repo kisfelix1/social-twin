@@ -32,6 +32,12 @@ public class MessengerPage extends BasePage {
     WebElement lastMessageByUser;
 
 
+    @FindBy(xpath = "//*[contains(text(), 'Az összes cookie engedélyezése')]")
+    WebElement accept;
+
+
+
+
     public boolean isTimeStampInCriteria(int timeValueCriteria, String timeMeasureCriteria) {
         String timeValue = getTimeStampMeasureOnIndex(0);
         String timeMeasure = getTimeStampMeasureOnIndex(1);
@@ -62,5 +68,15 @@ public class MessengerPage extends BasePage {
 
     public boolean notSentByUser() {
         return !lastMessageByUser.getText().equals(lastMessage.getText());
+    }
+
+    public void clickAccept() {
+        try {
+            Thread.sleep(2000);
+        }catch (InterruptedException e){
+            System.out.println("asdas");
+        }
+        accept.click();
+        //driver.findElement(By.xpath("")).click();
     }
 }

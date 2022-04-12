@@ -9,5 +9,8 @@
         <module name="social-twin" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="social-twin" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

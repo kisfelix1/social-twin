@@ -34,10 +34,16 @@ public class MessengerLoginPage extends BasePage {
     @FindBy(xpath = "//button[@name='login']")
     WebElement loginButton;
 
+    /*@FindBy(xpath = "//button[@data-cookiebanner='accept_button']")*/
     @FindBy(xpath = "//button[@data-cookiebanner='accept_button']")
     WebElement acceptCookiesButton;
 
     public void actLogin(String email, String password) {
+        /*try {
+            Thread.sleep(5000);
+        }catch(InterruptedException e){
+            System.out.println("asdas");
+        }*/
         driver.get(URLCollector.MESSENGER_LOGIN_PAGE_URL.URL);
         WebElementWait.waitUntilClickable(driver, acceptCookiesButton);
         acceptCookiesButton.click();
