@@ -71,12 +71,7 @@ public class MessengerPage extends BasePage {
     }
 
     public void clickAccept() {
-        try {
-            Thread.sleep(2000);
-        }catch (InterruptedException e){
-            System.out.println("asdas");
-        }
+        WebElementWait.waitUntilClickable(driver, accept);
         accept.click();
-        //driver.findElement(By.xpath("")).click();
     }
 }
