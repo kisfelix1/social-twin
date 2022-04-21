@@ -1,12 +1,11 @@
 package pages;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import util.WebElementWait;
-
-import java.awt.Toolkit;
-import java.awt.Dimension;
 
 
 public class MessengerPage extends BasePage {
@@ -36,8 +35,6 @@ public class MessengerPage extends BasePage {
     WebElement accept;
 
 
-
-
     public boolean isTimeStampInCriteria(int timeValueCriteria, String timeMeasureCriteria) {
         String timeValue = getTimeStampMeasureOnIndex(0);
         String timeMeasure = getTimeStampMeasureOnIndex(1);
@@ -52,7 +49,6 @@ public class MessengerPage extends BasePage {
         WebElementWait.waitUntilClickable(driver, firstChatOnPage);
         firstChatOnPage.click();
         WebElementWait.waitUntilVisible(driver, messageInputField);
-        Thread.sleep(2000);
         messageInputField.sendKeys(answer);
         messageInputField.sendKeys(Keys.ENTER);
     }
@@ -71,7 +67,11 @@ public class MessengerPage extends BasePage {
     }
 
     public void clickAccept() {
-        WebElementWait.waitUntilClickable(driver, accept);
-        accept.click();
+        try {
+            WebElementWait.waitUntilClickable(driver, accept);
+            accept.click();
+        } catch (Exception e) {
+            System.out.println("There was no element");
+        }
     }
 }
