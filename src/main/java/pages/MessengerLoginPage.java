@@ -16,13 +16,17 @@ import java.util.Map;
 
 public class MessengerLoginPage extends BasePage {
     public MessengerLoginPage() {
+        setUpDriver();
+        PageFactory.initElements(driver, this);
+    }
+
+    private void setUpDriver() {
         Map<String, Object> prefs = new HashMap<String, Object>();
         prefs.put("profile.default_content_setting_values.notifications", 2);
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", prefs);
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        PageFactory.initElements(driver, this);
     }
 
     @FindBy(xpath = "//input[@id='email']")
@@ -34,16 +38,10 @@ public class MessengerLoginPage extends BasePage {
     @FindBy(xpath = "//button[@name='login']")
     WebElement loginButton;
 
-    /*@FindBy(xpath = "//button[@data-cookiebanner='accept_button']")*/
     @FindBy(xpath = "//button[@data-cookiebanner='accept_button']")
     WebElement acceptCookiesButton;
 
     public void actLogin(String email, String password) {
-        /*try {
-            Thread.sleep(5000);
-        }catch(InterruptedException e){
-            System.out.println("asdas");
-        }*/
         driver.get(URLCollector.MESSENGER_LOGIN_PAGE_URL.URL);
         WebElementWait.waitUntilClickable(driver, acceptCookiesButton);
         acceptCookiesButton.click();
@@ -54,9 +52,4 @@ public class MessengerLoginPage extends BasePage {
         WebElementWait.waitUntilClickable(driver, loginButton);
         loginButton.click();
     }
-
-    public void giveWebDriverToPage(BasePage page){
-        page.setDriver(driver);
-    }
-
 }
