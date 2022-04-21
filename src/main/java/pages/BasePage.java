@@ -12,7 +12,4 @@ public class BasePage {
     public void setDriver(WebDriver driver) {
         this.driver = driver;
     }
-
-    public BasePage() {
-    }
 }
