@@ -14,10 +14,10 @@ import java.util.concurrent.TimeUnit;
 
 public class CleverBotPage extends BasePage {
     public CleverBotPage() {
-        ChromeOptions otherOptions = new ChromeOptions();
-        otherOptions.addArguments("--disable-blink-features=AutomationControlled");
-        otherOptions.addArguments("--enable-javascript");
-        driver = new ChromeDriver(otherOptions);
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
+        chromeOptions.addArguments("--enable-javascript");
+        driver = new ChromeDriver(chromeOptions);
         PageFactory.initElements(driver, this);
         setUp();
     }
