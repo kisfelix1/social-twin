@@ -1,28 +1,30 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import util.URLCollector;
 import util.WebElementWait;
 
-import java.util.concurrent.TimeUnit;
-
 public class CleverBotPage extends BasePage {
     public CleverBotPage() {
+        setUpDriver();
+        PageFactory.initElements(driver, this);
+        initPage();
+    }
+
+    private void setUpDriver() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
         chromeOptions.addArguments("--enable-javascript");
         driver = new ChromeDriver(chromeOptions);
-        PageFactory.initElements(driver, this);
-        setUp();
     }
 
-    private void setUp() {
+    private void initPage() {
         driver.get(URLCollector.CLEVERBOT_PAGE_URL.URL);
         clickAgreeButton();
     }
