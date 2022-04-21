@@ -51,8 +51,6 @@ public class MessengerBot extends Bot {
     }
 
     private String getFormattedNameFromPage(){
-        return messengerPage.getLastMessageSenderName().split(" ")[0] +
-                " " +
-                messengerPage.getLastMessageSenderName().split(" ")[1];
+        return messengerPage.getLastMessageSenderName();
     }
 }
