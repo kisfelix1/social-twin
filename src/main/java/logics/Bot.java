@@ -23,7 +23,7 @@ public abstract class Bot {
     public abstract void login();
 
     public void loop() throws InterruptedException, FileNotFoundException {
-        while(true) {
+        while (true) {
             if (messageReceived()) {
                 String message = getLastMessageFromPartner();
                 sendMessageToAI(message);
@@ -38,7 +38,7 @@ public abstract class Bot {
         return lastMessageIsInNameList() && notSentByUser();
     }
 
-    private void sendMessageToAI(String message){
+    private void sendMessageToAI(String message) {
         cleverBotPage.sendText(message);
     }
 
