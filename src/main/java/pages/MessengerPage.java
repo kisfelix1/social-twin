@@ -35,6 +35,8 @@ public class MessengerPage extends BasePage {
     WebElement accept;
 
 
+
+
     public boolean isTimeStampInCriteria(int timeValueCriteria, String timeMeasureCriteria) {
         String timeValue = getTimeStampMeasureOnIndex(0);
         String timeMeasure = getTimeStampMeasureOnIndex(1);
@@ -70,7 +72,7 @@ public class MessengerPage extends BasePage {
         try {
             WebElementWait.waitUntilClickable(driver, accept);
             accept.click();
-        } catch (Exception e) {
+        }catch(Exception e){
             System.out.println("There was no element");
         }
     }
